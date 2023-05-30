@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.UpdateCustomerRecordController">
+    <children>
+        <Label layoutX="189.0" layoutY="51.0" text="Update Customer Record">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="18.0" />
+            </font>
+        </Label>
+        <GridPane layoutX="29.0" layoutY="105.0" prefHeight="223.0" prefWidth="543.0" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="105.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="59.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="168.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="126.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="167.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="ID" />
+                <Label text="Name" GridPane.columnIndex="2">
+                    <GridPane.margin>
+                        <Insets left="45.0" />
+                    </GridPane.margin>
+                </Label>
+                <Label text="Address" GridPane.rowIndex="1" />
+                <Label text="Postal Code" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="45.0" />
+                    </GridPane.margin>
+                </Label>
+                <Label text="Phone" GridPane.rowIndex="2" />
+                <Label text="Country" GridPane.rowIndex="3" />
+                <Label text="First-Level Division" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                    <GridPane.margin>
+                        <Insets left="10.0" />
+                    </GridPane.margin>
+                </Label>
+                <TextField fx:id="customerIdTxt" disable="true" prefHeight="26.0" prefWidth="160.0" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                </TextField>
+                <TextField fx:id="nameTxt" prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" />
+                <TextField fx:id="addressTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="postalCodeTxt" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <TextField fx:id="phoneTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ComboBox fx:id="countryComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <ComboBox fx:id="FLDivisionComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </GridPane>
+        <Button fx:id="cancelBtn" layoutX="517.0" layoutY="361.0" mnemonicParsing="false" text="Cancel" />
+        <Button fx:id="saveBtn" layoutX="458.0" layoutY="361.0" mnemonicParsing="false" text="Save" />
+    </children>
+</AnchorPane>
