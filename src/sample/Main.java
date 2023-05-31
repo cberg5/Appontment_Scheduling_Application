@@ -1,6 +1,6 @@
 package sample;
 
-import helper.JDBC;
+import sample.DAO.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
