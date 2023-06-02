@@ -14,20 +14,40 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     Stage stage;
     Parent scene;
+
+    @FXML
+    private Button cancelBtn;
+
+    @FXML
+    private Label location;
+
+    @FXML
+    private Button loginBtn;
+
+    @FXML
+    private Label password;
+
     @FXML
     private TextField passwordTxt;
+
+    @FXML
+    private Label title;
+
+    @FXML
+    private Label username;
 
     @FXML
     private TextField usernameTxt;
 
     @FXML
     private Label zoneIdLabel;
-
     @FXML
     void onActionCancel(ActionEvent event) {
         System.exit(0);
@@ -46,6 +66,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        Locale locale = Locale.getDefault();
+        zoneIdLabel.setText(ZoneId.systemDefault().toString());
     }
 }
