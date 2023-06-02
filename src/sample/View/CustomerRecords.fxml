@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.CustomerRecordsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.CustomerRecordsController">
     <children>
         <Label layoutX="268.0" layoutY="44.0" text="Customer Records">
             <font>
@@ -34,9 +34,9 @@
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <Button fx:id="addBtn" layoutX="19.0" layoutY="339.0" mnemonicParsing="false" text="Add" />
-        <Button fx:id="updateBtn" layoutX="75.0" layoutY="339.0" mnemonicParsing="false" text="Update" />
-        <Button fx:id="deleteBtn" layoutX="150.0" layoutY="339.0" mnemonicParsing="false" text="Delete" />
-        <Button fx:id="returnBtn" layoutX="626.0" layoutY="339.0" mnemonicParsing="false" text="Return" />
+        <Button fx:id="addBtn" layoutX="19.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActionAddBtn" text="Add" />
+        <Button fx:id="updateBtn" layoutX="75.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActionUpdateBtn" text="Update" />
+        <Button fx:id="deleteBtn" layoutX="150.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActionDeleteBtn" text="Delete" />
+        <Button fx:id="returnBtn" layoutX="626.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActionReturnBtn" text="Return" />
     </children>
 </AnchorPane>

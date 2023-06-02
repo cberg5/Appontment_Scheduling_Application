@@ -9,22 +9,22 @@
     <children>
         <VBox alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="291.0" prefWidth="241.0" spacing="25.0">
             <children>
-                <Button fx:id="customerRecordsBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Customer Records">
+                <Button fx:id="customerRecordsBtn" mnemonicParsing="false" onAction="#onActionCustomerRecordsBtn" prefHeight="40.0" prefWidth="160.0" text="Customer Records">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="appointmentsBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Appointments">
+                <Button fx:id="appointmentsBtn" mnemonicParsing="false" onAction="#onActionAppointmentsBtn" prefHeight="40.0" prefWidth="160.0" text="Appointments">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="reportsBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Reports">
+                <Button fx:id="reportsBtn" mnemonicParsing="false" onAction="#onActionReportsBtn" prefHeight="40.0" prefWidth="160.0" text="Reports">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="exitBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Exit">
+                <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#onActionExitBtn" prefHeight="40.0" prefWidth="160.0" text="Exit">
                     <font>
                         <Font size="14.0" />
                     </font>

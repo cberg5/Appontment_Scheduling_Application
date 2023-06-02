@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AddCustomerRecordController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AddCustomerRecordController">
     <children>
         <Label layoutX="203.0" layoutY="50.0" text="Add Customer Record">
             <font>
@@ -67,7 +67,7 @@
                 <Insets />
             </opaqueInsets>
         </GridPane>
-        <Button fx:id="cancelBtn" layoutX="516.0" layoutY="360.0" mnemonicParsing="false" text="Cancel" />
-        <Button fx:id="saveBtn" layoutX="457.0" layoutY="360.0" mnemonicParsing="false" text="Save" />
+        <Button fx:id="cancelBtn" layoutX="516.0" layoutY="360.0" mnemonicParsing="false" onAction="#onActionCancelBtn" text="Cancel" />
+        <Button fx:id="saveBtn" layoutX="457.0" layoutY="360.0" mnemonicParsing="false" onAction="#onActionSaveBtn" text="Save" />
     </children>
 </AnchorPane>

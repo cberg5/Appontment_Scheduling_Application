@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AppointmentsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AppointmentsController">
     <children>
         <Label layoutX="427.0" layoutY="37.0" text="Appointments">
             <font>
@@ -39,16 +39,16 @@
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <Button fx:id="addBtn" layoutX="19.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActionAddBtn" text="Add" />
-        <Button fx:id="updateBtn" layoutX="75.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActionUpdateBtn" text="Update" />
-        <Button fx:id="deleteBtn" layoutX="150.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActionDeleteBtn" text="Delete" />
-        <Button layoutX="906.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActionReturnBtn" text="Return" />
-        <RadioButton fx:id="viewAllRBtn" layoutX="29.0" layoutY="69.0" mnemonicParsing="false" onAction="#onActionViewAllRBtn" selected="true" text="View All">
+        <Button fx:id="addBtn" layoutX="19.0" layoutY="339.0" mnemonicParsing="false" text="Add" />
+        <Button fx:id="updateBtn" layoutX="75.0" layoutY="339.0" mnemonicParsing="false" text="Update" />
+        <Button fx:id="deleteBtn" layoutX="150.0" layoutY="339.0" mnemonicParsing="false" text="Delete" />
+        <Button layoutX="906.0" layoutY="339.0" mnemonicParsing="false" text="Return" />
+        <RadioButton fx:id="viewAllRBtn" layoutX="29.0" layoutY="69.0" mnemonicParsing="false" selected="true" text="View All">
             <toggleGroup>
                 <ToggleGroup fx:id="apptFilterTG" />
             </toggleGroup>
         </RadioButton>
-        <RadioButton fx:id="viewMonthRBtn" layoutX="106.0" layoutY="69.0" mnemonicParsing="false" onAction="#onActionViewMonthRBtn" text="View Month" toggleGroup="$apptFilterTG" />
-        <RadioButton fx:id="viewWeekRBtn" layoutX="203.0" layoutY="69.0" mnemonicParsing="false" onAction="#onActionViewWeekRBtn" text="View Week" toggleGroup="$apptFilterTG" />
+        <RadioButton fx:id="viewMonthRBtn" layoutX="106.0" layoutY="69.0" mnemonicParsing="false" text="View Month" toggleGroup="$apptFilterTG" />
+        <RadioButton fx:id="viewWeekRBtn" layoutX="203.0" layoutY="69.0" mnemonicParsing="false" text="View Week" toggleGroup="$apptFilterTG" />
     </children>
 </AnchorPane>
