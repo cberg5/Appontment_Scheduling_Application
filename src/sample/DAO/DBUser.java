@@ -11,9 +11,8 @@ public class DBUser {
         String sql = "SELECT * FROM users WHERE User_Name = '" + username + "' AND Password = '" + password + "'";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-        rs.next();
 
-        if (rs.getString("User_Name").equals(username) && rs.getString("Password").equals(password)){
+        if (rs.next()){
             return true;
         }
         else{

@@ -6,14 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.DAO.DBUser;
 
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -21,6 +24,9 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
     Stage stage;
     Parent scene;
+    String alertTitle;
+    String alertHeader;
+    String alertContent;
 
     @FXML
     private Button cancelBtn;
@@ -54,14 +60,26 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void onActionLogin(ActionEvent event) throws IOException {
+    void onActionLogin(ActionEvent event) throws IOException, SQLException {
 
-        String userName = usernameTxt.getText()
+        String loginUsername = usernameTxt.getText();
+        String loginPassword = passwordTxt.getText();
 
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/sample/View/MainMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        if (DBUser.validateLogin(loginUsername, loginPassword) == true) {
+
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/sample/View/MainMenu.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(alertTitle);
+            alert.setHeaderText(alertHeader);
+            alert.setContentText(alertContent);
+            alert.showAndWait();
+        }
 
     }
 
@@ -78,6 +96,9 @@ public class LoginController implements Initializable {
         loginBtn.setText(resourceBundle.getString("loginBtn"));
         cancelBtn.setText(resourceBundle.getString("cancelBtn"));
         location.setText(resourceBundle.getString("location"));
+        alertTitle = resourceBundle.getString("alertTitle");
+        alertHeader = resourceBundle.getString("alertHeader");
+        alertContent = resourceBundle.getString("alertContent");
 
     }
 }
