@@ -56,6 +56,8 @@ public class LoginController implements Initializable {
     @FXML
     void onActionLogin(ActionEvent event) throws IOException {
 
+        String userName = usernameTxt.getText()
+
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/sample/View/MainMenu.fxml"));
         stage.setScene(new Scene(scene));
@@ -68,13 +70,14 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         zoneIdLabel.setText(ZoneId.systemDefault().toString());
-        resourceBundle = ResourceBundle.getBundle("sample.Language", new Locale("fr"));
-      //  resourceBundle = ResourceBundle.getBundle("Language", Locale.getDefault());
+      //  resourceBundle = ResourceBundle.getBundle("sample.Language", new Locale("fr"));
+        resourceBundle = ResourceBundle.getBundle("sample.Language", Locale.getDefault());
         title.setText(resourceBundle.getString("title"));
         username.setText(resourceBundle.getString("username"));
         password.setText(resourceBundle.getString("password"));
         loginBtn.setText(resourceBundle.getString("loginBtn"));
         cancelBtn.setText(resourceBundle.getString("cancelBtn"));
+        location.setText(resourceBundle.getString("location"));
 
     }
 }
