@@ -1,10 +1,19 @@
 package sample.DAO;
 
+import sample.Model.User;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBUser {
+
+    private static User loginUser;
+
+    private static User getLoginUser() {
+        return loginUser;
+
+    }
 
     public static boolean validateLogin(String username, String password) throws SQLException {
 
@@ -13,6 +22,8 @@ public class DBUser {
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()){
+            int userId = rs.getInt("User_ID");
+            loginUser = new User(userId, username, password);
             return true;
         }
         else{

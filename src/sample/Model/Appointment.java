@@ -8,21 +8,19 @@ public class Appointment {
     private String title;
     private String description;
     private String location;
-    private String contact;
     private String type;
-    private LocalDateTime startDateTime;
-    private LocalDateTime endDateTime;
+    private String startDateTime;
+    private String endDateTime;
     private int userId;
     private int customerId;
     private int contactId;
 
 
-    public Appointment(int id, String title, String description, String location, String contact, String type, LocalDateTime startDateTime, LocalDateTime endDateTime, int userId, int customerId, int contactId) {
+    public Appointment(int id, String title, String description, String location, String type, String startDateTime, String endDateTime, int userId, int customerId, int contactId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.location = location;
-        this.contact = contact;
         this.type = type;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
@@ -47,19 +45,15 @@ public class Appointment {
         return location;
     }
 
-    public String getContact() {
-        return contact;
-    }
-
     public String getType() {
         return type;
     }
 
-    public LocalDateTime getStartDateTime() {
+    public String getStartDateTime() {
         return startDateTime;
     }
 
-    public LocalDateTime getEndDateTime() {
+    public String getEndDateTime() {
         return endDateTime;
     }
 
