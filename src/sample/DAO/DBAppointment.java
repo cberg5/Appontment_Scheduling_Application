@@ -7,6 +7,7 @@ import sample.Model.Appointment;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class DBAppointment {
 
@@ -30,4 +31,17 @@ public class DBAppointment {
         }
         return allAppointments;
     }
+
+    public static ObservableList<Appointment> getMonthAppointments() throws SQLException {
+
+        ObservableList<Appointment> monthAppointments = FXCollections.observableArrayList();
+        Appointment appointment;
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime month = LocalDateTime.now().plusMonths(1);
+        String sql = "SELECT * FROM appointments WHERE Start >= '" + now + "' AND Start <= '" + month + "'";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+    }
+
 }

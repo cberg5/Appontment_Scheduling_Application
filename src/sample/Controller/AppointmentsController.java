@@ -7,10 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sample.DAO.DBAppointment;
+import sample.Model.Appointment;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AppointmentsController implements Initializable {
@@ -19,37 +23,37 @@ public class AppointmentsController implements Initializable {
     Parent scene;
 
     @FXML
-    private TableColumn<?, ?> apptIdCol;
+    private TableColumn<Appointment, Integer> apptIdCol;
 
     @FXML
-    private TableView<?> apptTableView;
+    private TableView<Appointment> apptTableView;
 
     @FXML
-    private TableColumn<?, ?> contactCol;
+    private TableColumn<Appointment, Integer> contactIdCol;
 
     @FXML
-    private TableColumn<?, ?> customerIdCol;
+    private TableColumn<Appointment, Integer> customerIdCol;
 
     @FXML
-    private TableColumn<?, ?> descriptionCol;
+    private TableColumn<Appointment, String> descriptionCol;
 
     @FXML
-    private TableColumn<?, ?> endDateTimeCol;
+    private TableColumn<Appointment, String> endDateTimeCol;
 
     @FXML
-    private TableColumn<?, ?> locationCol;
+    private TableColumn<Appointment, String> locationCol;
 
     @FXML
-    private TableColumn<?, ?> startDateTimeCol;
+    private TableColumn<Appointment, String> startDateTimeCol;
 
     @FXML
-    private TableColumn<?, ?> titleCol;
+    private TableColumn<Appointment, String> titleCol;
 
     @FXML
-    private TableColumn<?, ?> typeCol;
+    private TableColumn<Appointment, String> typeCol;
 
     @FXML
-    private TableColumn<?, ?> userIdCol;
+    private TableColumn<Appointment, Integer> userIdCol;
 
     @FXML
     private RadioButton viewAllRBtn;
@@ -112,6 +116,21 @@ public class AppointmentsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            apptTableView.setItems(DBAppointment.getAllAppointments());
+            apptIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+            contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+            descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+            locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+            typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+            startDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+            endDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+            userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+            customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
