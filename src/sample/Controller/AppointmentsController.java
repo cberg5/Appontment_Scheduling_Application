@@ -101,17 +101,26 @@ public class AppointmentsController implements Initializable {
     }
 
     @FXML
-    void onActionViewAllRBtn(ActionEvent event) {
+    void onActionViewAllRBtn(ActionEvent event) throws SQLException {
+        if(viewAllRBtn.isSelected()) {
+            apptTableView.setItems(DBAppointment.getAllAppointments());
+        }
 
     }
 
     @FXML
-    void onActionViewMonthRBtn(ActionEvent event) {
+    void onActionViewMonthRBtn(ActionEvent event) throws SQLException {
+        if(viewMonthRBtn.isSelected()){
+            apptTableView.setItems(DBAppointment.getMonthAppointments());
+        }
 
     }
 
     @FXML
-    void onActionViewWeekRBtn(ActionEvent event) {
+    void onActionViewWeekRBtn(ActionEvent event) throws SQLException {
+        if(viewWeekRBtn.isSelected()){
+            apptTableView.setItems(DBAppointment.getWeekAppointments());
+        }
 
     }
 

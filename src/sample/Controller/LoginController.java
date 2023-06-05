@@ -6,12 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sample.DAO.DBAppointment;
 import sample.DAO.DBUser;
+import sample.Model.Appointment;
 
 
 import java.io.IOException;
@@ -19,6 +18,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -66,6 +66,27 @@ public class LoginController implements Initializable {
         String loginPassword = passwordTxt.getText();
 
         if (DBUser.validateLogin(loginUsername, loginPassword) == true) {
+
+            try {
+                Appointment appointment = DBAppointment.get15minAppointment();
+
+                if (appointment == null){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("There are no upcoming appointments");
+                    Optional<ButtonType> result = alert.showAndWait();
+                }
+                else {
+                    int id = appointment.getId();
+                    String time = appointment.getStartDateTime();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Upcoming appointment");
+                    alert.setHeaderText("There is an upcoming appointment.");
+                    alert.setContentText("Appointment " + id + ", starts at " + time + ".");
+                    Optional<ButtonType> result = alert.showAndWait();
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/sample/View/MainMenu.fxml"));

@@ -64,26 +64,6 @@ public class MainMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            Appointment appointment = DBAppointment.getSoonAppointment();
-
-            if (appointment == null){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("There are no upcoming appointments");
-                Optional<ButtonType> result = alert.showAndWait();
-            }
-            else {
-                int id = appointment.getId();
-                String time = appointment.getStartDateTime();
-
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Upcoming appointment");
-                alert.setHeaderText("There is an upcoming appointment.");
-                alert.setContentText("Appointment " + id + ", starts at " + time + ".");
-                Optional<ButtonType> result = alert.showAndWait();
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
 
     }
 }

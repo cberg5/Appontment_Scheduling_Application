@@ -3,11 +3,14 @@ package sample.DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.Model.Appointment;
+import sample.Utilities.TimeUtility;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 public class DBAppointment {
 
@@ -72,12 +75,14 @@ public class DBAppointment {
         return weekAppointments;
     }
 
-    public static Appointment getSoonAppointment() throws SQLException {
+    public static Appointment get15minAppointment() throws SQLException {
 
         Appointment appointment;
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime fifteenMin = LocalDateTime.now().plusMinutes(15);
-        String sql = "SELECT * FROM appointments WHERE Start >= '" + now + "' AND Start <= '" + fifteenMin + "'";
+        LocalDateTime convertedLocalDT = TimeUtility.convertLocaltoUtc(now);
+        LocalDateTime convertedLocalFifteen = convertedLocalDT.plusMinutes(15);
+
+        String sql = "SELECT * FROM appointments WHERE Start >= '" + convertedLocalDT + "' AND Start <= '" + convertedLocalFifteen + "'";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
@@ -92,5 +97,9 @@ public class DBAppointment {
         else {
             return null;
         }
+    }
+
+    public static void addAppointment(Appointment appointment) {
+
     }
 }
