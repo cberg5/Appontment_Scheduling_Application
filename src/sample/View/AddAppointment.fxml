@@ -57,33 +57,33 @@
                         <Insets left="35.0" />
                     </padding>
                 </Label>
-                <TextField disable="true" prefHeight="26.0" prefWidth="160.0" promptText="Auto-Generated" GridPane.columnIndex="1">
+                <TextField fx:id="apptIdTxt" disable="true" prefHeight="26.0" prefWidth="160.0" promptText="Auto-Generated" GridPane.columnIndex="1">
                     <GridPane.margin>
                         <Insets />
                     </GridPane.margin>
                 </TextField>
-                <TextField prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <TextField fx:id="titleTxt" prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" />
+                <TextField fx:id="descriptionTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="locationTxt" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <TextField fx:id="typeTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ComboBox fx:id="startTimeComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <ComboBox fx:id="endTimeComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                 <Label text="Contact" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <padding>
                         <Insets left="45.0" />
                     </padding>
                 </Label>
-                <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                <Label text="Customer ID" GridPane.rowIndex="5" />
-                <Label text="User ID" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                <ComboBox fx:id="contactComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Label text="Customer" GridPane.rowIndex="5" />
+                <Label text="User" GridPane.columnIndex="2" GridPane.rowIndex="5">
                     <GridPane.margin>
                         <Insets left="45.0" />
                     </GridPane.margin>
                 </Label>
-                <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                <ComboBox fx:id="customerComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <ComboBox fx:id="userComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                 <Label text="Appointment Date" GridPane.rowIndex="3" />
-                <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <DatePicker fx:id="apptDayDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
             <opaqueInsets>
                 <Insets />

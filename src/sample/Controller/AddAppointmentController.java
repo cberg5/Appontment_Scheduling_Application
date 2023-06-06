@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,12 +9,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sample.DAO.DBContact;
+import sample.DAO.DBCustomer;
+import sample.DAO.DBUser;
+import sample.DAO.JDBC;
 import sample.Model.Contact;
 import sample.Model.Customer;
 import sample.Model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
@@ -32,7 +38,7 @@ public class AddAppointmentController implements Initializable {
     private ComboBox<Contact> contactComboBox;
 
     @FXML
-    private ComboBox<Customer> customerIdTxt;
+    private ComboBox<Customer> customerComboBox;
 
     @FXML
     private TextField descriptionTxt;
@@ -53,7 +59,7 @@ public class AddAppointmentController implements Initializable {
     private TextField typeTxt;
 
     @FXML
-    private ComboBox<User> userIdTxt;
+    private ComboBox<User> userComboBox;
 
     @FXML
     void onActionCancelBtn(ActionEvent event) throws IOException {
@@ -78,6 +84,16 @@ public class AddAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            contactComboBox.setItems(DBContact.getAllContacts());
+            userComboBox.setItems(DBUser.getAllUsers());
+            customerComboBox.setItems(DBCustomer.getAllCustomers());
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
 
     }
 }

@@ -9,9 +9,10 @@ public class Customer {
     private String phone;
     private int flDivisionId;
     private String flDivision;
+    private int countryId;
     private String country;
 
-    public Customer(int id, String name, String address, String postalCode, String phone, int flDivisionId, String flDivision, String country){
+    public Customer(int id, String name, String address, String postalCode, String phone, int flDivisionId, String flDivision, int countryId, String country){
         this.id = id;
         this.name = name;
         this.address = address;
@@ -19,6 +20,7 @@ public class Customer {
         this.phone = phone;
         this.flDivisionId = flDivisionId;
         this.flDivision = flDivision;
+        this.countryId = countryId;
         this.country = country;
     }
 
@@ -79,11 +81,24 @@ public class Customer {
         this.flDivision = flDivision;
     }
 
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
     public String getCountry() {
         return country;
     }
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString(){
+        return (Integer.toString(id) + ": " + name);
     }
 }
