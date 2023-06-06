@@ -23,7 +23,7 @@ public class DBUser {
 
         if (rs.next()){
             int userId = rs.getInt("User_ID");
-            loginUser = new User(userId, username, password);
+            loginUser = new User(userId, username);
             return true;
         }
         else{

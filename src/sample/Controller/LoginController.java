@@ -16,6 +16,7 @@ import sample.Model.Appointment;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Optional;
@@ -77,7 +78,7 @@ public class LoginController implements Initializable {
                 }
                 else {
                     int id = appointment.getId();
-                    String time = appointment.getStartDateTime();
+                    LocalDateTime time = appointment.getStartDateTime();
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Upcoming appointment");
                     alert.setHeaderText("There is an upcoming appointment.");

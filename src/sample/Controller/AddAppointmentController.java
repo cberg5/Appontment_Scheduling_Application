@@ -8,9 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sample.Model.Contact;
+import sample.Model.Customer;
+import sample.Model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class AddAppointmentController implements Initializable {
@@ -25,22 +29,22 @@ public class AddAppointmentController implements Initializable {
     private TextField apptIdTxt;
 
     @FXML
-    private ComboBox<?> contactComboBox;
+    private ComboBox<Contact> contactComboBox;
 
     @FXML
-    private ComboBox<?> customerIdTxt;
+    private ComboBox<Customer> customerIdTxt;
 
     @FXML
     private TextField descriptionTxt;
 
     @FXML
-    private ComboBox<?> endTimeComboBox;
+    private ComboBox<LocalTime> endTimeComboBox;
 
     @FXML
     private TextField locationTxt;
 
     @FXML
-    private ComboBox<?> startTimeComboBox;
+    private ComboBox<LocalTime> startTimeComboBox;
 
     @FXML
     private TextField titleTxt;
@@ -49,7 +53,7 @@ public class AddAppointmentController implements Initializable {
     private TextField typeTxt;
 
     @FXML
-    private ComboBox<?> userIdTxt;
+    private ComboBox<User> userIdTxt;
 
     @FXML
     void onActionCancelBtn(ActionEvent event) throws IOException {

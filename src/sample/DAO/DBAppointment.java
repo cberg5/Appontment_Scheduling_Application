@@ -27,7 +27,7 @@ public class DBAppointment {
 
             appointment = new Appointment(rs.getInt("Appointment_ID"), rs.getString("Title"),
                     rs.getString("Description"), rs.getString("Location"), rs.getString("Type"),
-                    rs.getString("Start"), rs.getString("End"), rs.getInt("Customer_ID"),
+                    rs.getTimestamp("Start").toLocalDateTime(), rs.getTimestamp("End").toLocalDateTime(), rs.getInt("Customer_ID"),
                     rs.getInt("User_ID"), rs.getInt("Contact_ID"));
             allAppointments.add(appointment);
 
@@ -48,7 +48,7 @@ public class DBAppointment {
         while(rs.next()) {
             appointment = new Appointment(rs.getInt("Appointment_ID"), rs.getString("Title"),
                     rs.getString("Description"), rs.getString("Location"), rs.getString("Type"),
-                    rs.getString("Start"), rs.getString("End"), rs.getInt("Customer_ID"),
+                    rs.getTimestamp("Start").toLocalDateTime(), rs.getTimestamp("End").toLocalDateTime(), rs.getInt("Customer_ID"),
                     rs.getInt("User_ID"), rs.getInt("Contact_ID"));
             monthAppointments.add(appointment);
         }
@@ -68,7 +68,7 @@ public class DBAppointment {
         while(rs.next()) {
             appointment = new Appointment(rs.getInt("Appointment_ID"), rs.getString("Title"),
                     rs.getString("Description"), rs.getString("Location"), rs.getString("Type"),
-                    rs.getString("Start"), rs.getString("End"), rs.getInt("Customer_ID"),
+                    rs.getTimestamp("Start").toLocalDateTime(), rs.getTimestamp("End").toLocalDateTime(), rs.getInt("Customer_ID"),
                     rs.getInt("User_ID"), rs.getInt("Contact_ID"));
             weekAppointments.add(appointment);
         }
@@ -89,7 +89,7 @@ public class DBAppointment {
         if (rs.next()) {
             appointment = new Appointment(rs.getInt("Appointment_ID"), rs.getString("Title"),
                     rs.getString("Description"), rs.getString("Location"), rs.getString("Type"),
-                    rs.getString("Start"), rs.getString("End"), rs.getInt("Customer_ID"),
+                    rs.getTimestamp("Start").toLocalDateTime(), rs.getTimestamp("End").toLocalDateTime(), rs.getInt("Customer_ID"),
                     rs.getInt("User_ID"), rs.getInt("Contact_ID"));
 
                     return appointment;
