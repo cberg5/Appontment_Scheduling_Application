@@ -20,6 +20,7 @@ import sample.Model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
@@ -89,6 +90,7 @@ public class AddAppointmentController implements Initializable {
             contactComboBox.setItems(DBContact.getAllContacts());
             userComboBox.setItems(DBUser.getAllUsers());
             customerComboBox.setItems(DBCustomer.getAllCustomers());
+            apptDayDatePicker.setValue(LocalDate.now());
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
