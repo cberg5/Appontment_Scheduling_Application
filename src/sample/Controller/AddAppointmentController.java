@@ -94,8 +94,8 @@ public class AddAppointmentController implements Initializable {
             apptDayDatePicker.setValue(LocalDate.now());
             LocalTime firstMeetingStart = LocalTime.of(8, 0);
             LocalTime firstMeetingEnd = LocalTime.of(9, 0);
-            startTimeComboBox.setItems(TimeUtility.populateMeetingTimes(firstMeetingStart));
-            endTimeComboBox.setItems(TimeUtility.populateMeetingTimes(firstMeetingEnd));
+            startTimeComboBox.setItems(TimeUtility.populateStartTimes(firstMeetingStart));
+            endTimeComboBox.setItems(TimeUtility.populateEndTimes(firstMeetingEnd));
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
