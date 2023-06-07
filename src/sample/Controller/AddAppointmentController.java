@@ -16,6 +16,7 @@ import sample.DAO.JDBC;
 import sample.Model.Contact;
 import sample.Model.Customer;
 import sample.Model.User;
+import sample.Utilities.TimeUtility;
 
 import java.io.IOException;
 import java.net.URL;
@@ -91,6 +92,10 @@ public class AddAppointmentController implements Initializable {
             userComboBox.setItems(DBUser.getAllUsers());
             customerComboBox.setItems(DBCustomer.getAllCustomers());
             apptDayDatePicker.setValue(LocalDate.now());
+            LocalTime firstMeetingStart = LocalTime.of(8, 0);
+            LocalTime firstMeetingEnd = LocalTime.of(9, 0);
+            startTimeComboBox.setItems(TimeUtility.populateMeetingTimes(firstMeetingStart));
+            endTimeComboBox.setItems(TimeUtility.populateMeetingTimes(firstMeetingEnd));
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
