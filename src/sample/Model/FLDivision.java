@@ -38,6 +38,6 @@ public class FLDivision {
 
     @Override
     public String toString(){
-        return (Integer.toString(id) + ": " + name);
+        return (name);
     }
 }

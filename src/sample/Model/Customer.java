@@ -31,6 +31,17 @@ public class Customer {
         this.country = country;
     }
 
+    public Customer(String name, String address, String postalCode, String phone, int flDivisionId, String flDivision, int countryId, String country){
+        this.name = name;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.phone = phone;
+        this.flDivisionId = flDivisionId;
+        this.flDivision = flDivision;
+        this.countryId = countryId;
+        this.country = country;
+    }
+
 
     public int getId() {
         return id;

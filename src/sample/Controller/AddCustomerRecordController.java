@@ -6,14 +6,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.DAO.DBCountry;
+import sample.DAO.DBCustomer;
+import sample.DAO.DBFLDivision;
+import sample.Model.Country;
+import sample.Model.Customer;
+import sample.Model.FLDivision;
 
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddCustomerRecordController implements Initializable {
@@ -22,7 +30,7 @@ public class AddCustomerRecordController implements Initializable {
     Parent scene;
 
     @FXML
-    private ComboBox<?> FLDivisionComboBox;
+    private ComboBox<FLDivision> FLDivisionComboBox;
 
     @FXML
     private TextField addressTxt;
@@ -31,7 +39,7 @@ public class AddCustomerRecordController implements Initializable {
     private Button cancelBtn;
 
     @FXML
-    private ComboBox<?> countryComboBox;
+    private ComboBox<Country> countryComboBox;
 
     @FXML
     private TextField customerIdTxt;
@@ -49,6 +57,25 @@ public class AddCustomerRecordController implements Initializable {
     private Button saveBtn;
 
     @FXML
+    void onActionCountryComboBox(ActionEvent event) throws IOException, SQLException {
+
+        Country selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
+        int countryId = selectedCountry.getId();
+
+        if(countryId == 1){
+            FLDivisionComboBox.setItems(DBFLDivision.getUSDivisions());
+        }
+        if(countryId == 2){
+            FLDivisionComboBox.setItems(DBFLDivision.getUKDivisions());
+        }
+        if(countryId == 3){
+            FLDivisionComboBox.setItems(DBFLDivision.getCADivisions());
+        }
+
+
+    }
+
+    @FXML
     void onActionCancelBtn(ActionEvent event) throws IOException {
 
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -59,17 +86,43 @@ public class AddCustomerRecordController implements Initializable {
     }
 
     @FXML
-    void onActionSaveBtn(ActionEvent event) throws IOException {
+    void onActionSaveBtn(ActionEvent event) throws IOException, SQLException {
 
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/sample/View/CustomerRecords.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        try {
+            Customer newCustomer;
+            String name = nameTxt.getText();
+            String address = addressTxt.getText();
+            String postalCode = postalCodeTxt.getText();
+            String phone = phoneTxt.getText();
+            int flDivisionId = FLDivisionComboBox.getSelectionModel().getSelectedItem().getId();
+            String flDivision = FLDivisionComboBox.getSelectionModel().getSelectedItem().getName();
+            int countryId = countryComboBox.getSelectionModel().getSelectedItem().getId();
+            String country = countryComboBox.getSelectionModel().getSelectedItem().getName();
+
+            newCustomer = new Customer(name, address, postalCode, phone, flDivisionId, flDivision, countryId, country);
+
+            DBCustomer.addCustomer(newCustomer);
+
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/sample/View/CustomerRecords.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please input valid data for each field.");
+            alert.showAndWait();
+        }
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            countryComboBox.setItems(DBCountry.getAllCountries());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 }

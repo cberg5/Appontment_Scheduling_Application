@@ -28,13 +28,13 @@ public class CustomerRecordsController implements Initializable {
     Parent scene;
 
     @FXML
-    private TableColumn<Customer, FLDivision> FLDivisionCol;
+    private TableColumn<Customer, Integer> FLDivisionIdCol;
 
     @FXML
     private TableColumn<Customer, String> addressCol;
 
     @FXML
-    private TableColumn<Customer, String> countryCol;
+    private TableColumn<Customer, Integer> countryIdCol;
 
     @FXML
     private TableColumn<Customer, Integer> customerIdCol;
@@ -95,8 +95,11 @@ public class CustomerRecordsController implements Initializable {
             customerRecordsTableView.setItems(DBCustomer.getAllCustomers());
             customerIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
             nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-
+            addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+            postalCodeCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+            phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+            FLDivisionIdCol.setCellValueFactory(new PropertyValueFactory<>("flDivisionId"));
+            countryIdCol.setCellValueFactory(new PropertyValueFactory<>("countryId"));
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
