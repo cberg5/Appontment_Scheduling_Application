@@ -93,12 +93,17 @@ public class AppointmentsController implements Initializable {
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Please confirm if you would like to delete Appointment ID: "
                     + appointmentToDelete.getId() + ", Type: " + appointmentToDelete.getType());
-            alert.setTitle("Confirm Product Deletion");
+            alert.setTitle("Confirm Appointment Deletion");
             Optional<ButtonType> result = alert.showAndWait();
 
             if(result.isPresent() && result.get() == ButtonType.OK) {
                 DBAppointment.deleteAppointment(appointmentToDelete);
                 apptTableView.setItems(DBAppointment.getAllAppointments());
+
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Appointment ID: " + appointmentToDelete.getId() +
+                        ", Type: " + appointmentToDelete.getType() + ", has been deleted.");
+                alert2.setTitle("Appointment Deleted");
+                Optional<ButtonType> result2 = alert2.showAndWait();
             }
         }
     }

@@ -212,4 +212,15 @@ public class DBAppointment {
         return rowsAffected;
 
     }
+
+    public static int deleteAppointment(int customerId) throws SQLException {
+
+        String sql = "DELETE FROM appointments WHERE Customer_ID = " + customerId;
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+
+    }
 }

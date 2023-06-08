@@ -57,7 +57,7 @@ public class AddCustomerRecordController implements Initializable {
     private Button saveBtn;
 
     @FXML
-    void onActionCountryComboBox(ActionEvent event) throws IOException, SQLException {
+    void onActionCountryComboBox(ActionEvent event) throws SQLException {
 
         Country selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
         int countryId = selectedCountry.getId();

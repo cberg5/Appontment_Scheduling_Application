@@ -50,4 +50,31 @@ public class DBCustomer {
 
         return rowsAffected;
     }
+
+    public static int updateCustomer(Customer customer) throws SQLException {
+
+        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ?" +
+                "WHERE Customer_ID = " + customer.getId();
+
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, customer.getName());
+        ps.setString(2, customer.getAddress());
+        ps.setString(3, customer.getPostalCode());
+        ps.setString(4, customer.getPhone());
+        ps.setInt(5, customer.getFlDivisionId());
+
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+    }
+
+    public static int deleteCustomer(Customer customer) throws SQLException {
+
+        String sql = "DELETE FROM customers WHERE Customer_ID = " + customer.getId();
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+    }
 }

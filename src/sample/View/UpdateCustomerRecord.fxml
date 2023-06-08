@@ -60,7 +60,7 @@
                 <TextField fx:id="addressTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="postalCodeTxt" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                 <TextField fx:id="phoneTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <ComboBox fx:id="countryComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <ComboBox fx:id="countryComboBox" onAction="#onActionCountryComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <ComboBox fx:id="FLDivisionComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             </children>
             <opaqueInsets>
