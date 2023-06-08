@@ -7,6 +7,8 @@ import java.time.*;
 
 public class TimeUtility {
 
+    private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
+
     public static LocalDateTime convertLocaltoUtc(LocalDateTime localDt){
 
         ZoneId zoneID = ZoneId.systemDefault();

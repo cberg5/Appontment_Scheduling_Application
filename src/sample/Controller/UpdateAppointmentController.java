@@ -7,11 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sample.DAO.DBAppointment;
 import sample.DAO.DBContact;
 import sample.DAO.DBCustomer;
 import sample.DAO.DBUser;
@@ -25,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
@@ -79,10 +78,52 @@ public class UpdateAppointmentController implements Initializable {
     @FXML
     void onActionSaveBtn(ActionEvent event) throws IOException {
 
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/sample/View/Appointments.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        try {
+            boolean valid = true;
+            Appointment updatedAppointment;
+            int id = Integer.parseInt(apptIdTxt.getText());
+            String title = titleTxt.getText();
+            String description = descriptionTxt.getText();
+            String location = locationTxt.getText();
+            String type = typeTxt.getText();
+            LocalDate date = apptDayDatePicker.getValue();
+            LocalTime startTime = startTimeComboBox.getSelectionModel().getSelectedItem();
+            LocalTime endTime = endTimeComboBox.getSelectionModel().getSelectedItem();
+            int customerId = customerComboBox.getSelectionModel().getSelectedItem().getId();
+            int userId = userComboBox.getSelectionModel().getSelectedItem().getId();
+            int contactId = contactComboBox.getSelectionModel().getSelectedItem().getId();
+            LocalDateTime startDateTime = LocalDateTime.of(date.getYear(), date.getMonth(), date.getDayOfMonth(),
+                    startTime.getHour(), startTime.getMinute());
+            LocalDateTime endDateTime = LocalDateTime.of(date.getYear(), date.getMonth(), date.getDayOfMonth(),
+                    endTime.getHour(), endTime.getMinute());
+
+            updatedAppointment = new Appointment(id, title, description, location, type, startDateTime, endDateTime, userId, customerId, contactId);
+
+            if (updatedAppointment.getStartDateTime().isAfter(updatedAppointment.getEndDateTime())) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid appointment time. The appointment starting time must be before the ending time");
+                alert.showAndWait();
+                valid = false;
+            }
+            if (DBAppointment.checkOverlapUpdated(updatedAppointment) == true) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "This customer already has an appointment scheduled during this time. Please select a different appointment time");
+                alert.showAndWait();
+                valid = false;
+            }
+
+            if(valid == true) {
+
+                DBAppointment.updateAppointment(updatedAppointment);
+
+                stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                scene = FXMLLoader.load(getClass().getResource("/sample/View/Appointments.fxml"));
+                stage.setScene(new Scene(scene));
+                stage.show();
+            }
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please input valid data for each field.");
+            alert.showAndWait();
+        }
 
     }
 

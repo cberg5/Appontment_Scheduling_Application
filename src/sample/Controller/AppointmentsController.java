@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AppointmentsController implements Initializable {
@@ -81,8 +82,25 @@ public class AppointmentsController implements Initializable {
     }
 
     @FXML
-    void onActionDeleteBtn(ActionEvent event) {
+    void onActionDeleteBtn(ActionEvent event) throws SQLException {
 
+        Appointment appointmentToDelete = apptTableView.getSelectionModel().getSelectedItem();
+
+        if(appointmentToDelete == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select an appointment to delete.");
+            alert.showAndWait();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Please confirm if you would like to delete Appointment ID: "
+                    + appointmentToDelete.getId() + ", Type: " + appointmentToDelete.getType());
+            alert.setTitle("Confirm Product Deletion");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if(result.isPresent() && result.get() == ButtonType.OK) {
+                DBAppointment.deleteAppointment(appointmentToDelete);
+                apptTableView.setItems(DBAppointment.getAllAppointments());
+            }
+        }
     }
 
     @FXML

@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -78,11 +79,15 @@ public class LoginController implements Initializable {
                 }
                 else {
                     int id = appointment.getId();
+
                     LocalDateTime time = appointment.getStartDateTime();
+                    String dateTimeFormatter= "yyyy-MM-dd HH:mm:ss";
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern(dateTimeFormatter);
+                    String formatDateTime = time.format(format);
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Upcoming appointment");
                     alert.setHeaderText("There is an upcoming appointment.");
-                    alert.setContentText("Appointment " + id + ", starts at " + time + ".");
+                    alert.setContentText("Appointment " + id + ", starts at " + formatDateTime + ".");
                     Optional<ButtonType> result = alert.showAndWait();
                 }
             } catch (SQLException throwables) {

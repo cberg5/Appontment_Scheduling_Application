@@ -130,6 +130,38 @@ public class DBAppointment {
         return appointmentOverlap;
     }
 
+    public static boolean checkOverlapUpdated(Appointment customerAppointment) throws SQLException {
+
+        boolean appointmentOverlap = false;
+        ObservableList<Appointment> allCustomerAppointments = FXCollections.observableArrayList();
+        Appointment appointment;
+        String sql = "SELECT * FROM appointments WHERE customer_ID = " + customerAppointment.getCustomerId() + " AND Appointment_ID <> " + customerAppointment.getId();
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            appointment = new Appointment(rs.getInt("Appointment_ID"), rs.getString("Title"),
+                    rs.getString("Description"), rs.getString("Location"), rs.getString("Type"),
+                    rs.getTimestamp("Start").toLocalDateTime(), rs.getTimestamp("End").toLocalDateTime(), rs.getInt("User_ID"),
+                    rs.getInt("Customer_ID"), rs.getInt("Contact_ID"));
+            allCustomerAppointments.add(appointment);
+        }
+
+        for (Appointment appt : allCustomerAppointments) {
+
+            if (appt.getStartDateTime().isEqual(customerAppointment.getStartDateTime()) || appt.getEndDateTime().isEqual(customerAppointment.getEndDateTime())) {
+                appointmentOverlap = true;
+            }
+            if (appt.getStartDateTime().isBefore(customerAppointment.getStartDateTime()) && appt.getEndDateTime().isAfter(customerAppointment.getStartDateTime())) {
+                appointmentOverlap = true;
+            }
+            if (appt.getStartDateTime().isAfter(customerAppointment.getStartDateTime()) && appt.getStartDateTime().isBefore(customerAppointment.getEndDateTime())) {
+                appointmentOverlap = true;
+            }
+        }
+        return appointmentOverlap;
+    }
+
     public static int addAppointment(Appointment appointment) throws SQLException {
 
         String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID)" +
@@ -168,5 +200,16 @@ public class DBAppointment {
         int rowsAffected = ps.executeUpdate();
 
         return rowsAffected;
+    }
+
+    public static int deleteAppointment(Appointment appointment) throws SQLException {
+
+        String sql = "DELETE FROM appointments WHERE Appointment_ID = " + appointment.getId();
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+
     }
 }
