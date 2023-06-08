@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 public class DBAppointment {
 
@@ -150,6 +148,25 @@ public class DBAppointment {
         int rowsAffected = ps.executeUpdate();
 
         return rowsAffected;
+    }
 
+    public static int updateAppointment(Appointment appointment) throws SQLException {
+
+        String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?," +
+                " Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = " + appointment.getId();
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, appointment.getTitle());
+        ps.setString(2, appointment.getDescription());
+        ps.setString(3, appointment.getLocation());
+        ps.setString(4, appointment.getType());
+        ps.setTimestamp(5, Timestamp.valueOf(appointment.getStartDateTime()));
+        ps.setTimestamp(6, Timestamp.valueOf(appointment.getEndDateTime()));
+        ps.setInt(7, appointment.getCustomerId());
+        ps.setInt(8, appointment.getUserId());
+        ps.setInt(9, appointment.getContactId());
+
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
     }
 }

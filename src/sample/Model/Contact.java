@@ -1,5 +1,12 @@
 package sample.Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sample.DAO.DBContact;
+import sample.DAO.DBCustomer;
+
+import java.sql.SQLException;
+
 public class Contact {
 
     private int id;
@@ -25,6 +32,20 @@ public class Contact {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static Contact getContact(Appointment appointment) throws SQLException {
+        int contactId = appointment.getContactId();
+        Contact selectedContact = null;
+        ObservableList<Contact> allContacts = FXCollections.observableArrayList();
+        allContacts = DBContact.getAllContacts();
+
+        for(Contact contact : allContacts){
+            if(contact.getId() == contactId){
+                selectedContact = contact;
+            }
+        }
+        return selectedContact;
     }
 
     @Override

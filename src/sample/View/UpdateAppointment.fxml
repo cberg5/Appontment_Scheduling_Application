@@ -74,14 +74,14 @@
                     </padding>
                 </Label>
                 <ComboBox fx:id="contactComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                <Label text="Customer ID" GridPane.rowIndex="5" />
-                <Label text="User ID" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                <Label text="Customer" GridPane.rowIndex="5" />
+                <Label text="User" GridPane.columnIndex="2" GridPane.rowIndex="5">
                     <GridPane.margin>
                         <Insets left="45.0" />
                     </GridPane.margin>
                 </Label>
-                <ComboBox fx:id="customerIdTxt" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <ComboBox fx:id="userIdTxt" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                <ComboBox fx:id="customerComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <ComboBox fx:id="userComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                 <Label text="Appointment Date" GridPane.rowIndex="3" />
                 <DatePicker fx:id="apptDayDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>

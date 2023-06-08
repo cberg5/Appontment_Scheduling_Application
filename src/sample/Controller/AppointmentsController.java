@@ -22,6 +22,7 @@ public class AppointmentsController implements Initializable {
 
     Stage stage;
     Parent scene;
+    private static Appointment selectedAppointment;
 
     @FXML
     private TableColumn<Appointment, Integer> apptIdCol;
@@ -65,6 +66,10 @@ public class AppointmentsController implements Initializable {
     @FXML
     private RadioButton viewWeekRBtn;
 
+    public static Appointment getSelectedAppointment(){
+        return selectedAppointment;
+    }
+
     @FXML
     void onActionAddBtn(ActionEvent event) throws IOException {
 
@@ -93,10 +98,18 @@ public class AppointmentsController implements Initializable {
     @FXML
     void onActionUpdateBtn(ActionEvent event) throws IOException {
 
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/sample/View/UpdateAppointment.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        selectedAppointment = apptTableView.getSelectionModel().getSelectedItem();
+
+        if(selectedAppointment == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select an appointment to update.");
+            alert.showAndWait();
+        }
+        else {
+            stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/sample/View/UpdateAppointment.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
 
     }
 

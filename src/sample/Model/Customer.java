@@ -1,5 +1,12 @@
 package sample.Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sample.DAO.DBCustomer;
+import sample.DAO.DBUser;
+
+import java.sql.SQLException;
+
 public class Customer {
 
     private int id;
@@ -95,6 +102,20 @@ public class Customer {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public static Customer getCustomer(Appointment appointment) throws SQLException {
+        int customerId = appointment.getCustomerId();
+        Customer selectedCustomer = null;
+        ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+        allCustomers = DBCustomer.getAllCustomers();
+
+        for(Customer customer : allCustomers){
+            if(customer.getId() == customerId){
+                selectedCustomer = customer;
+            }
+        }
+        return selectedCustomer;
     }
 
     @Override

@@ -1,5 +1,11 @@
 package sample.Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sample.DAO.DBUser;
+
+import java.sql.SQLException;
+
 public class User {
 
     private int id;
@@ -23,6 +29,20 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public static User getUser(Appointment appointment) throws SQLException {
+        int userId = appointment.getUserId();
+        User selectedUser = null;
+        ObservableList<User> allUsers = FXCollections.observableArrayList();
+        allUsers = DBUser.getAllUsers();
+
+        for(User user : allUsers){
+            if(user.getId() == userId){
+                selectedUser = user;
+            }
+        }
+        return selectedUser;
     }
 
     @Override
