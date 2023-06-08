@@ -9,11 +9,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sample.DAO.DBCustomer;
+import sample.Model.Country;
+import sample.Model.Customer;
+import sample.Model.FLDivision;
 
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class CustomerRecordsController implements Initializable {
@@ -22,28 +28,28 @@ public class CustomerRecordsController implements Initializable {
     Parent scene;
 
     @FXML
-    private TableColumn<?, ?> FLDivisionCol;
+    private TableColumn<Customer, FLDivision> FLDivisionCol;
 
     @FXML
-    private TableColumn<?, ?> addressCol;
+    private TableColumn<Customer, String> addressCol;
 
     @FXML
-    private TableColumn<?, ?> countryCol;
+    private TableColumn<Customer, String> countryCol;
 
     @FXML
-    private TableColumn<?, ?> customerIdCol;
+    private TableColumn<Customer, Integer> customerIdCol;
 
     @FXML
-    private TableView<?> customerRecordsTableView;
+    private TableView<Customer> customerRecordsTableView;
 
     @FXML
-    private TableColumn<?, ?> nameCol;
+    private TableColumn<Customer, String> nameCol;
 
     @FXML
-    private TableColumn<?, ?> phoneCol;
+    private TableColumn<Customer, String> phoneCol;
 
     @FXML
-    private TableColumn<?, ?> postalCodeCol;
+    private TableColumn<Customer, String> postalCodeCol;
 
 
     @FXML
@@ -84,6 +90,17 @@ public class CustomerRecordsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            customerRecordsTableView.setItems(DBCustomer.getAllCustomers());
+            customerIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 }
