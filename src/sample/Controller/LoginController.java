@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import sample.DAO.DBAppointment;
 import sample.DAO.DBUser;
 import sample.Model.Appointment;
+import sample.Model.User;
 
 
 import java.io.IOException;
@@ -74,7 +75,7 @@ public class LoginController implements Initializable {
 
                 if (appointment == null){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("There are no upcoming appointments");
+                    alert.setContentText("There are no upcoming appointments for user: " + DBUser.getLoginUser().getName());
                     Optional<ButtonType> result = alert.showAndWait();
                 }
                 else {
@@ -86,7 +87,7 @@ public class LoginController implements Initializable {
                     String formatDateTime = time.format(format);
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Upcoming appointment");
-                    alert.setHeaderText("There is an upcoming appointment.");
+                    alert.setHeaderText("There is an upcoming appointment for user: " + DBUser.getLoginUser().getName());
                     alert.setContentText("Appointment " + id + ", starts at " + formatDateTime + ".");
                     Optional<ButtonType> result = alert.showAndWait();
                 }

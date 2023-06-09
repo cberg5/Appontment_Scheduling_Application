@@ -26,13 +26,13 @@ public class DBReports {
         return numAppointments;
     }
 
-    public static int appointmentsByCountry(String country) throws SQLException {
+    public static int appointmentsByCountry(int countryId) throws SQLException {
         int numAppointments = 0;
 
         String sql = "SELECT * FROM appointments Join customers ON " +
                 "appointments.Customer_ID = customers.Customer_ID Join first_level_divisions ON " +
                 "customers.Division_ID = first_level_divisions.Division_ID Join countries ON " +
-                "first_level_divisions.Country_ID = countries.Country_ID WHERE Country = " + country;
+                "first_level_divisions.Country_ID = countries.Country_ID WHERE countries.Country_ID = " + countryId;
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
@@ -43,12 +43,12 @@ public class DBReports {
         return numAppointments;
     }
 
-    public static ObservableList<Appointment> getAppointmentsByContact(String contact) throws SQLException {
+    public static ObservableList<Appointment> getAppointmentsByContact(int contactId) throws SQLException {
 
         ObservableList<Appointment> contactAppointments = FXCollections.observableArrayList();
         Appointment appointment;
 
-        String sql = "SELECT * FROM appointments JOIN contacts ON appointments.Contact_ID = contacts.Contact_ID WHERE Contact_Name = " + contact;;
+        String sql = "SELECT * FROM appointments JOIN contacts ON appointments.Contact_ID = contacts.Contact_ID WHERE contacts.Contact_Id = " + contactId;;
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 

@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import sample.DAO.DBAppointment;
+import sample.DAO.JDBC;
 import sample.Model.Appointment;
 
 import java.io.IOException;
@@ -48,6 +49,7 @@ public class MainMenuController implements Initializable {
     @FXML
     void onActionExitBtn(ActionEvent event) {
 
+        JDBC.closeConnection();
         System.exit(0);
     }
 

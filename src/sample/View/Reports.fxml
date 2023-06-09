@@ -17,7 +17,7 @@
                 <Font name="Arial Rounded MT Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="returnBtn" layoutX="16.0" layoutY="397.0" mnemonicParsing="false" text="Return" />
+        <Button fx:id="returnBtn" layoutX="16.0" layoutY="397.0" onAction="#onActionReturnBtn" mnemonicParsing="false" text="Return" />
         <ComboBox fx:id="monthComboBox" layoutX="14.0" layoutY="105.0" onAction="#onActionMonthComboBox" prefWidth="150.0" promptText="Select month" />
         <ComboBox fx:id="typeComboBox" layoutX="175.0" layoutY="105.0" onAction="#onActionTypeComboBox" prefWidth="150.0" promptText="Select type" />
         <Label fx:id="monthTypeTxt" layoutX="350.0" layoutY="110.0" prefHeight="17.0" prefWidth="150.0" text=": (Number of appointments)" />

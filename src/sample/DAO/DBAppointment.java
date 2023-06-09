@@ -81,7 +81,7 @@ public class DBAppointment {
         LocalDateTime convertedLocalDT = TimeUtility.convertLocaltoUtc(now);
         LocalDateTime convertedLocalFifteen = convertedLocalDT.plusMinutes(15);
 
-        String sql = "SELECT * FROM appointments WHERE Start >= '" + convertedLocalDT + "' AND Start <= '" + convertedLocalFifteen + "'";
+        String sql = "SELECT * FROM appointments WHERE Start >= '" + convertedLocalDT + "' AND Start <= '" + convertedLocalFifteen + "' AND User_ID = " + DBUser.getLoginUser().getId();
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 

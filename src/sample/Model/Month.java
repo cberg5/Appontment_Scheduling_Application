@@ -30,65 +30,66 @@ public class Month {
 
     public static ObservableList<Month> getAllMonths(){
         ObservableList<Month> allMonths = FXCollections.observableArrayList();
-        Month jan = null;
-        jan.setMonthNum(1);
-        jan.setMonthName("January");
-        allMonths.add(jan);
+        Month month;
+        int monthNum = 1;
+        String monthName = "January";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month feb = null;
-        feb.setMonthNum(2);
-        feb.setMonthName("February");
-        allMonths.add(feb);
+        monthNum = 2;
+        monthName = "February";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month mar = null;
-        mar.setMonthNum(3);
-        mar.setMonthName("March");
-        allMonths.add(mar);
+        monthNum = 3;
+        monthName = "March";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month apr = null;
-        apr.setMonthNum(4);
-        apr.setMonthName("April");
-        allMonths.add(apr);
+        monthNum = 4;
+        monthName = "April";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month may = null;
-        may.setMonthNum(5);
-        may.setMonthName("May");
-        allMonths.add(may);
+        monthNum = 5;
+        monthName = "May";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month jun = null;
-        jun.setMonthNum(6);
-        jun.setMonthName("June");
-        allMonths.add(jun);
+        monthNum = 6;
+        monthName = "June";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month jul = null;
-        jul.setMonthNum(7);
-        jul.setMonthName("July");
-        allMonths.add(jul);
+        monthNum = 7;
+        monthName = "July";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month aug = null;
-        aug.setMonthNum(8);
-        aug.setMonthName("August");
-        allMonths.add(aug);
+        monthNum = 8;
+        monthName = "August";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month sep = null;
-        sep.setMonthNum(9);
-        sep.setMonthName("September");
-        allMonths.add(sep);
+        monthNum = 9;
+        monthName = "September";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month oct = null;
-        oct.setMonthNum(10);
-        oct.setMonthName("October");
-        allMonths.add(oct);
+        monthNum = 10;
+        monthName = "October";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month nov = null;
-        nov.setMonthNum(11);
-        nov.setMonthName("November");
-        allMonths.add(nov);
+        monthNum = 11;
+        monthName = "November";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
-        Month dec = null;
-        dec.setMonthNum(12);
-        dec.setMonthName("December");
-        allMonths.add(dec);
+        monthNum = 12;
+        monthName = "December";
+        month = new Month(monthNum, monthName);
+        allMonths.add(month);
 
         return allMonths;
     }

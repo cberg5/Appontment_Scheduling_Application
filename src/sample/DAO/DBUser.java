@@ -12,7 +12,7 @@ public class DBUser {
 
     private static User loginUser;
 
-    private static User getLoginUser() {
+    public static User getLoginUser() {
         return loginUser;
 
     }
