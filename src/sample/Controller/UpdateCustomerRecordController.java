@@ -57,12 +57,15 @@ public class UpdateCustomerRecordController implements Initializable {
 
         if(countryId == 1){
             FLDivisionComboBox.setItems(DBFLDivision.getUSDivisions());
+            FLDivisionComboBox.setValue(null);
         }
         if(countryId == 2){
             FLDivisionComboBox.setItems(DBFLDivision.getUKDivisions());
+            FLDivisionComboBox.setValue(null);
         }
         if(countryId == 3){
             FLDivisionComboBox.setItems(DBFLDivision.getCADivisions());
+            FLDivisionComboBox.setValue(null);
         }
 
     }
@@ -77,7 +80,7 @@ public class UpdateCustomerRecordController implements Initializable {
     }
 
     @FXML
-    void onActionSaveBtn(ActionEvent event) throws IOException {
+    void onActionSaveBtn(ActionEvent event) throws IOException, SQLException {
 
         try {
             Customer updatedCustomer;
@@ -119,6 +122,18 @@ public class UpdateCustomerRecordController implements Initializable {
             phoneTxt.setText(selectedCustomer.getPhone());
             countryComboBox.setItems(DBCountry.getAllCountries());
             countryComboBox.setValue(Country.getCountry(selectedCustomer));
+            if(selectedCustomer.getCountryId() == 1){
+                FLDivisionComboBox.setItems(DBFLDivision.getUSDivisions());
+                FLDivisionComboBox.setValue(FLDivision.getFLDivision(selectedCustomer));
+            }
+            if(selectedCustomer.getCountryId() == 2){
+                FLDivisionComboBox.setItems(DBFLDivision.getUKDivisions());
+                FLDivisionComboBox.setValue(FLDivision.getFLDivision(selectedCustomer));
+            }
+            if(selectedCustomer.getCountryId() == 3){
+                FLDivisionComboBox.setItems(DBFLDivision.getCADivisions());
+                FLDivisionComboBox.setValue(FLDivision.getFLDivision(selectedCustomer));
+            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

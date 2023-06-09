@@ -12,6 +12,23 @@ import java.sql.SQLException;
 
 public class DBFLDivision {
 
+    public static ObservableList<FLDivision> getAllDivisions() throws SQLException {
+
+        ObservableList<FLDivision> allDivisions = FXCollections.observableArrayList();
+        FLDivision flDivision;
+
+        String sql = "SELECT * FROM first_level_divisions";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            flDivision = new FLDivision(rs.getInt("Division_ID"), rs.getString("Division"), 3);
+            allDivisions.add(flDivision);
+        }
+
+        return allDivisions;
+    }
+
     public static ObservableList<FLDivision> getUSDivisions() throws SQLException {
 
         ObservableList<FLDivision> allUSDivisions = FXCollections.observableArrayList();
@@ -48,7 +65,7 @@ public class DBFLDivision {
 
     public static ObservableList<FLDivision> getCADivisions() throws SQLException {
 
-        ObservableList<FLDivision> allUSDivisions = FXCollections.observableArrayList();
+        ObservableList<FLDivision> allCADivisions = FXCollections.observableArrayList();
         FLDivision flDivision;
 
         String sql = "SELECT * FROM first_level_divisions WHERE Country_ID = 3";
@@ -57,10 +74,10 @@ public class DBFLDivision {
 
         while (rs.next()) {
             flDivision = new FLDivision(rs.getInt("Division_ID"), rs.getString("Division"), 3);
-            allUSDivisions.add(flDivision);
+            allCADivisions.add(flDivision);
         }
 
-        return allUSDivisions;
+        return allCADivisions;
     }
 
 

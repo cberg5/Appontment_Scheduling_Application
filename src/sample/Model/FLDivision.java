@@ -1,5 +1,12 @@
 package sample.Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sample.DAO.DBCountry;
+import sample.DAO.DBFLDivision;
+
+import java.sql.SQLException;
+
 public class FLDivision {
 
     private int id;
@@ -10,6 +17,20 @@ public class FLDivision {
         this.id = id;
         this.name = name;
         this.countryId = countryId;
+    }
+
+    public static FLDivision getFLDivision(Customer customer) throws SQLException {
+        int flDivisionId = customer.getFlDivisionId();
+        FLDivision selectedFLDivision = null;
+        ObservableList<FLDivision> allFLDivisions = FXCollections.observableArrayList();
+        allFLDivisions = DBFLDivision.getAllDivisions();
+
+        for (FLDivision flDivision : allFLDivisions) {
+            if (flDivision.getId() == flDivisionId){
+                selectedFLDivision = flDivision;
+            }
+        }
+        return selectedFLDivision;
     }
 
     public int getId() {

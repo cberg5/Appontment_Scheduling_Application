@@ -53,7 +53,7 @@ public class DBCustomer {
 
     public static int updateCustomer(Customer customer) throws SQLException {
 
-        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ?" +
+        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? " +
                 "WHERE Customer_ID = " + customer.getId();
 
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
