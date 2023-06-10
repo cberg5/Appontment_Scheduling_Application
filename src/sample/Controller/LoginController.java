@@ -12,9 +12,12 @@ import sample.DAO.DBAppointment;
 import sample.DAO.DBUser;
 import sample.Model.Appointment;
 import sample.Model.User;
+import sample.Utilities.TimeUtility;
 
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -67,6 +70,12 @@ public class LoginController implements Initializable {
 
         String loginUsername = usernameTxt.getText();
         String loginPassword = passwordTxt.getText();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime utcNow = TimeUtility.convertLocaltoUtc(now);
+        String fileName = "login_activity.txt";
+
+        FileWriter fileWriter = new FileWriter(fileName, true);
+        PrintWriter outputFile = new PrintWriter(fileWriter);
 
         if (DBUser.validateLogin(loginUsername, loginPassword) == true) {
 
@@ -90,11 +99,12 @@ public class LoginController implements Initializable {
                     alert.setHeaderText("There is an upcoming appointment for user: " + DBUser.getLoginUser().getName());
                     alert.setContentText("Appointment " + id + ", starts at " + formatDateTime + ".");
                     Optional<ButtonType> result = alert.showAndWait();
+
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
+            outputFile.println("User: " + DBUser.getLoginUser().getName() + ", successful login at " + utcNow + " UTC");
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/sample/View/MainMenu.fxml"));
             stage.setScene(new Scene(scene));
@@ -102,12 +112,16 @@ public class LoginController implements Initializable {
         }
 
         else {
+            outputFile.println("User: " + loginUsername + ", failed login attempt at " + utcNow + " UTC");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(alertTitle);
             alert.setHeaderText(alertHeader);
             alert.setContentText(alertContent);
             alert.showAndWait();
+
         }
+        outputFile.close();
+
 
     }
 
