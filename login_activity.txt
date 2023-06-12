@@ -4,3 +4,7 @@ User: test, failed login attempt at 2023-06-10T00:08:05.655856400 UTC
 User: test, failed login attempt at 2023-06-10T00:08:26.236768 UTC
 User: test, successful login at 2023-06-10T00:08:32.225858600 UTC
 User: test, successful login at 2023-06-12T15:53:09.891273100 UTC
+User: test, successful login at 2023-06-12T19:55:18.615384 UTC
+User: test, successful login at 2023-06-12T20:02:52.722497700 UTC
+User: test, successful login at 2023-06-12T20:07:32.237431900 UTC
+User: test, successful login at 2023-06-12T20:14:29.551455100 UTC

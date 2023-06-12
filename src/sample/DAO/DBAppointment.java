@@ -33,7 +33,7 @@ public class DBAppointment {
         }
         return allAppointments;
     }
-
+/**
     public static ObservableList<Appointment> getMonthAppointments() throws SQLException {
 
         ObservableList<Appointment> monthAppointments = FXCollections.observableArrayList();
@@ -73,7 +73,7 @@ public class DBAppointment {
         }
         return weekAppointments;
     }
-
+**/
     public static Appointment get15minAppointment() throws SQLException {
 
         Appointment appointment;

@@ -1,5 +1,7 @@
 package sample.Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +18,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AppointmentsController implements Initializable {
 
@@ -147,7 +151,10 @@ public class AppointmentsController implements Initializable {
     @FXML
     void onActionViewMonthRBtn(ActionEvent event) throws SQLException {
         if(viewMonthRBtn.isSelected()){
-            apptTableView.setItems(DBAppointment.getMonthAppointments());
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime oneMonth = LocalDateTime.now().plusMonths(1);
+            apptTableView.setItems(DBAppointment.getAllAppointments().stream().filter(a -> a.getStartDateTime().isAfter(now)
+                    && a.getStartDateTime().isBefore(oneMonth)).collect(Collectors.toCollection(FXCollections::observableArrayList)));
         }
 
     }
@@ -155,7 +162,11 @@ public class AppointmentsController implements Initializable {
     @FXML
     void onActionViewWeekRBtn(ActionEvent event) throws SQLException {
         if(viewWeekRBtn.isSelected()){
-            apptTableView.setItems(DBAppointment.getWeekAppointments());
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime oneWeek = LocalDateTime.now().plusWeeks(1);
+            apptTableView.setItems(DBAppointment.getAllAppointments().stream().filter(a -> a.getStartDateTime().isAfter(now)
+                    && a.getStartDateTime().isBefore(oneWeek)).collect(Collectors.toCollection(FXCollections::observableArrayList)));
+
         }
 
     }
