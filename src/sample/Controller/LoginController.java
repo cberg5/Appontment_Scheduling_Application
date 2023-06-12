@@ -84,7 +84,7 @@ public class LoginController implements Initializable {
 
                 if (appointment == null){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("There are no upcoming appointments for user: " + DBUser.getLoginUser().getName());
+                    alert.setContentText("There are no upcoming appointments");
                     Optional<ButtonType> result = alert.showAndWait();
                 }
                 else {
@@ -96,7 +96,7 @@ public class LoginController implements Initializable {
                     String formatDateTime = time.format(format);
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Upcoming appointment");
-                    alert.setHeaderText("There is an upcoming appointment for user: " + DBUser.getLoginUser().getName());
+                    alert.setHeaderText("There is an upcoming appointment");
                     alert.setContentText("Appointment " + id + ", starts at " + formatDateTime + ".");
                     Optional<ButtonType> result = alert.showAndWait();
 
