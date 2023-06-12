@@ -3,31 +3,35 @@ package sample.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Month class. Used to set and retrieve data for month objects.
+ */
 public class Month {
     int monthNum;
     String monthName;
 
-    public void setMonthName(String monthName) {
-        this.monthName = monthName;
-    }
-
-    public void setMonthNum(int monthNum) {
-        this.monthNum = monthNum;
-    }
-
-    public String getMonthName() {
-        return monthName;
-    }
-
+    /**
+     * Retrieves month number of a month
+     * @return
+     */
     public int getMonthNum() {
         return monthNum;
     }
 
+    /**
+     * Constructor for a month object
+     * @param monthNum
+     * @param monthName
+     */
     public Month(int monthNum, String monthName){
         this.monthNum = monthNum;
         this.monthName = monthName;
     }
 
+    /**
+     * A method to populate and return a list of all months.
+     * @return
+     */
     public static ObservableList<Month> getAllMonths(){
         ObservableList<Month> allMonths = FXCollections.observableArrayList();
         Month month;
@@ -94,6 +98,10 @@ public class Month {
         return allMonths;
     }
 
+    /**
+     * Overrides the toString function for Month class. Helps to properly display month info in comboboxes.
+     * @return
+     */
     @Override
     public String toString(){
         return (Integer.toString(monthNum) + ": " + monthName);

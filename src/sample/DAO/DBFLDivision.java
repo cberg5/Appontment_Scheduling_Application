@@ -22,13 +22,13 @@ public class DBFLDivision {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            flDivision = new FLDivision(rs.getInt("Division_ID"), rs.getString("Division"), 3);
+            flDivision = new FLDivision(rs.getInt("Division_ID"), rs.getString("Division"), rs.getInt("Country_ID"));
             allDivisions.add(flDivision);
         }
 
         return allDivisions;
     }
-
+/**
     public static ObservableList<FLDivision> getUSDivisions() throws SQLException {
 
         ObservableList<FLDivision> allUSDivisions = FXCollections.observableArrayList();
@@ -79,6 +79,6 @@ public class DBFLDivision {
 
         return allCADivisions;
     }
-
+**/
 
 }

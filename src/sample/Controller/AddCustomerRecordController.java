@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
+/**
+ * The AddCustomerRecordController Class.
+ * Provides control logic to the AddCustomerRecord menu to allow new customers to be added using user input
+ * from text fields and combo boxes.
+ */
 public class AddCustomerRecordController implements Initializable {
 
     Stage stage;
@@ -56,6 +63,14 @@ public class AddCustomerRecordController implements Initializable {
     @FXML
     private Button saveBtn;
 
+    /**
+     * On action event for the country combo box. When a country is selected will populate the division combo box with the proper divisions associated with that country.
+     * LAMBDA: Lambda expressions are used to filter through the list of all first level divisions depending on which country is selected.
+     * Lambda was used here for a simpler method of retrieving the list of divisions that correspond to the selected country.
+     * The alternative was to create additional SQL queries which would have been more code.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionCountryComboBox(ActionEvent event) throws SQLException {
 
@@ -63,18 +78,23 @@ public class AddCustomerRecordController implements Initializable {
         int countryId = selectedCountry.getId();
 
         if(countryId == 1){
-            FLDivisionComboBox.setItems(DBFLDivision.getUSDivisions());
+            FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 1).collect(Collectors.toCollection(FXCollections::observableArrayList)));
         }
         if(countryId == 2){
-            FLDivisionComboBox.setItems(DBFLDivision.getUKDivisions());
+            FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 2).collect(Collectors.toCollection(FXCollections::observableArrayList)));
         }
         if(countryId == 3){
-            FLDivisionComboBox.setItems(DBFLDivision.getCADivisions());
+            FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 3).collect(Collectors.toCollection(FXCollections::observableArrayList)));
         }
 
 
     }
 
+    /**
+     * On action event for the cancel button. Returns user to customer records menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCancelBtn(ActionEvent event) throws IOException {
 

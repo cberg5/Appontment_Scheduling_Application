@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class UpdateCustomerRecordController implements Initializable {
 
@@ -56,15 +58,15 @@ public class UpdateCustomerRecordController implements Initializable {
         int countryId = selectedCountry.getId();
 
         if(countryId == 1){
-            FLDivisionComboBox.setItems(DBFLDivision.getUSDivisions());
+            FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 1).collect(Collectors.toCollection(FXCollections::observableArrayList)));
             FLDivisionComboBox.setValue(null);
         }
         if(countryId == 2){
-            FLDivisionComboBox.setItems(DBFLDivision.getUKDivisions());
+            FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 2).collect(Collectors.toCollection(FXCollections::observableArrayList)));
             FLDivisionComboBox.setValue(null);
         }
         if(countryId == 3){
-            FLDivisionComboBox.setItems(DBFLDivision.getCADivisions());
+            FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 3).collect(Collectors.toCollection(FXCollections::observableArrayList)));
             FLDivisionComboBox.setValue(null);
         }
 
@@ -123,15 +125,15 @@ public class UpdateCustomerRecordController implements Initializable {
             countryComboBox.setItems(DBCountry.getAllCountries());
             countryComboBox.setValue(Country.getCountry(selectedCustomer));
             if(selectedCustomer.getCountryId() == 1){
-                FLDivisionComboBox.setItems(DBFLDivision.getUSDivisions());
+                FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 1).collect(Collectors.toCollection(FXCollections::observableArrayList)));
                 FLDivisionComboBox.setValue(FLDivision.getFLDivision(selectedCustomer));
             }
             if(selectedCustomer.getCountryId() == 2){
-                FLDivisionComboBox.setItems(DBFLDivision.getUKDivisions());
+                FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 2).collect(Collectors.toCollection(FXCollections::observableArrayList)));
                 FLDivisionComboBox.setValue(FLDivision.getFLDivision(selectedCustomer));
             }
             if(selectedCustomer.getCountryId() == 3){
-                FLDivisionComboBox.setItems(DBFLDivision.getCADivisions());
+                FLDivisionComboBox.setItems(DBFLDivision.getAllDivisions().stream().filter(d -> d.getCountryId() == 3).collect(Collectors.toCollection(FXCollections::observableArrayList)));
                 FLDivisionComboBox.setValue(FLDivision.getFLDivision(selectedCustomer));
             }
 
