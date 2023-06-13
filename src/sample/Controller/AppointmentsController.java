@@ -1,7 +1,6 @@
 package sample.Controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +17,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+/**
+ * The AppointmentsController class.
+ * Provides control logic to the appointments menu to view appointments by 'all', 'month, or 'week'.
+ * Add new appointments, or select an appointment to delete or modify.
+ */
 public class AppointmentsController implements Initializable {
 
     Stage stage;
@@ -71,10 +74,19 @@ public class AppointmentsController implements Initializable {
     @FXML
     private RadioButton viewWeekRBtn;
 
+    /**
+     * A static method to retrieve the selected appointment.
+     * @return
+     */
     public static Appointment getSelectedAppointment(){
         return selectedAppointment;
     }
 
+    /**
+     * On action method for the add button. Sends user to the add appointment menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionAddBtn(ActionEvent event) throws IOException {
 
@@ -85,6 +97,14 @@ public class AppointmentsController implements Initializable {
 
     }
 
+    /**
+     * On action method for delete button.
+     * Verifies that an appointment is selected.
+     * Prompts user to confirm appointment deletion then shows confirmation message with
+     * information on the appointment deleted.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionDeleteBtn(ActionEvent event) throws SQLException {
 
@@ -112,6 +132,11 @@ public class AppointmentsController implements Initializable {
         }
     }
 
+    /**
+     * On action method for return button. Returns user to the main menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionReturnBtn(ActionEvent event) throws IOException {
 
@@ -122,6 +147,12 @@ public class AppointmentsController implements Initializable {
 
     }
 
+    /**
+     * On action method for update button.
+     * Confirms the user selected an appointment and sends the user to the update appointment menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionUpdateBtn(ActionEvent event) throws IOException {
 
@@ -140,6 +171,13 @@ public class AppointmentsController implements Initializable {
 
     }
 
+    /**
+     * On action method for the view all radio button.
+     * Populates the table with all the appointments from the database by calling an appointment database access method
+     * that returns a list of all appointments from the database.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionViewAllRBtn(ActionEvent event) throws SQLException {
         if(viewAllRBtn.isSelected()) {
@@ -148,6 +186,15 @@ public class AppointmentsController implements Initializable {
 
     }
 
+    /**
+     * On action method for the view by month radio button. Populates table with all appointments within the next month.
+     * LAMBDA: A lambda expression is used to filter through the list of all appointments to return only appointments
+     * that exist between the current date/time and 1 month from now.
+     * Lambda was used here for a simpler method of retrieving the list of appointments that exist within a certain time frame.
+     * The alternative was to create additional SQL queries which would have been more code.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionViewMonthRBtn(ActionEvent event) throws SQLException {
         if(viewMonthRBtn.isSelected()){
@@ -159,6 +206,15 @@ public class AppointmentsController implements Initializable {
 
     }
 
+    /**
+     * On action method for the view by week radio button. Populates table with all appointments within the next week.
+     * LAMBDA: A lambda expression is used to filter through the list of all appointments to return only appointments
+     * that exist between the current date/time and 1 week from now.
+     * Lambda was used here for a simpler method of retrieving the list of appointments that exist within a certain time frame.
+     * The alternative was to create additional SQL queries which would have been more code.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionViewWeekRBtn(ActionEvent event) throws SQLException {
         if(viewWeekRBtn.isSelected()){
@@ -171,6 +227,11 @@ public class AppointmentsController implements Initializable {
 
     }
 
+    /**
+     * Initializes the controller. Populates the appointment table.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

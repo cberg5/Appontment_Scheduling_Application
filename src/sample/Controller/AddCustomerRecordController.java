@@ -64,7 +64,7 @@ public class AddCustomerRecordController implements Initializable {
     private Button saveBtn;
 
     /**
-     * On action event for the country combo box. When a country is selected will populate the division combo box with the proper divisions associated with that country.
+     * On action method for the country combo box. When a country is selected will populate the division combo box with the proper divisions associated with that country.
      * LAMBDA: Lambda expressions are used to filter through the list of all first level divisions depending on which country is selected.
      * Lambda was used here for a simpler method of retrieving the list of divisions that correspond to the selected country.
      * The alternative was to create additional SQL queries which would have been more code.
@@ -91,7 +91,7 @@ public class AddCustomerRecordController implements Initializable {
     }
 
     /**
-     * On action event for the cancel button. Returns user to customer records menu.
+     * On action method for the cancel button. Returns user to customer records menu.
      * @param event
      * @throws IOException
      */
@@ -105,6 +105,14 @@ public class AddCustomerRecordController implements Initializable {
 
     }
 
+    /**
+     * On action method for save button.
+     * Takes the user inputted data from the text fields and combo boxes and creates a new customer object and calls
+     * the customer database access method to add the customer to the database. Returns user to customer record menu when complete.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionSaveBtn(ActionEvent event) throws IOException, SQLException {
 
@@ -135,6 +143,11 @@ public class AddCustomerRecordController implements Initializable {
 
     }
 
+    /**
+     * Initializes the controller. Populates the country combo box.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

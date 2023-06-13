@@ -1,6 +1,5 @@
 package sample.Controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import sample.DAO.*;
+import sample.DAO.DBAppointment;
+import sample.DAO.DBContact;
+import sample.DAO.DBCustomer;
+import sample.DAO.DBUser;
 import sample.Model.Appointment;
 import sample.Model.Contact;
 import sample.Model.Customer;
@@ -24,6 +26,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+/**
+ * The AddAppointmentController class.
+ * Provides control logic to the AddAppointment menu to allow new appointments to be added using user input
+ * from text fields, combo boxes, and a date picker.
+ */
 public class AddAppointmentController implements Initializable {
 
     Stage stage;
@@ -62,6 +69,11 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private ComboBox<User> userComboBox;
 
+    /**
+     * On action event for the cancel button. Returns user to appointments menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCancelBtn(ActionEvent event) throws IOException {
 
@@ -72,6 +84,16 @@ public class AddAppointmentController implements Initializable {
 
     }
 
+    /**
+     * On action event for save button. Takes user inputted data from text fields, combo boxes,
+     * and a date picker to create a new appointment object. Calls an appointment database access function to check if
+     * there are any overlapping appointments. Verifies if the user inputted start time is before the end time.
+     * Calls appointment database access method to add the appointment to the database.
+     * Returns user to appointment menu when complete.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionSaveBtn(ActionEvent event) throws IOException, SQLException {
 
@@ -123,6 +145,12 @@ public class AddAppointmentController implements Initializable {
 
     }
 
+    /**
+     * Initializes the controller. Populates the combo boxes using database access methods
+     * and the time utility class for the appointment times.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
