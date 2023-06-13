@@ -1,6 +1,5 @@
 package sample.Controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +26,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+/**
+ * The UpdateAppointmentController Class.
+ * Provides control logic to the update appointment menu by populating the text fields, combo boxes,
+ * and date picker with the selected appointment information and allowing the user to change this information.
+ */
 public class UpdateAppointmentController implements Initializable {
 
     Stage stage;
@@ -65,6 +69,11 @@ public class UpdateAppointmentController implements Initializable {
     @FXML
     private ComboBox<User> userComboBox;
 
+    /**
+     * On action method for cancel button. Returns the user to the appointments menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCancelBtn(ActionEvent event) throws IOException {
 
@@ -75,6 +84,15 @@ public class UpdateAppointmentController implements Initializable {
 
     }
 
+    /**
+     * On action event for save button. Takes updated user input data from text fields, combo boxes,
+     * and a date picker to create a new appointment object. Calls an appointment database access function to check if
+     * there are any overlapping appointments. Verifies if the user inputted start time is before the end time.
+     * Calls appointment database access method to update the appointment in the database.
+     * Returns user to appointment menu when complete.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionSaveBtn(ActionEvent event) throws IOException {
 
@@ -127,6 +145,12 @@ public class UpdateAppointmentController implements Initializable {
 
     }
 
+    /**
+     * Initializes the controller. Retrieves the selected appointment from the appointment menu.
+     * Populates the text fields, combo boxes, and date picker with the selected appointment information.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

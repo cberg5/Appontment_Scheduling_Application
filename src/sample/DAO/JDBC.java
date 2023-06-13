@@ -3,6 +3,9 @@ package sample.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * The JDBC class. Used to set up database connection and open and close connection.
+ */
 public abstract class JDBC {
 
     private static final String protocol = "jdbc";
@@ -15,6 +18,9 @@ public abstract class JDBC {
     private static String password = "Passw0rd!"; // Password
     public static Connection connection;  // Connection Interface
 
+    /**
+     * A method to open database connection.
+     */
     public static void openConnection()
     {
         try {
@@ -28,6 +34,9 @@ public abstract class JDBC {
         }
     }
 
+    /**
+     * A method to close database connection
+     */
     public static void closeConnection() {
         try {
             connection.close();
@@ -39,7 +48,4 @@ public abstract class JDBC {
         }
     }
 
-    public static Connection getConnection() {
-        return connection;
-    }
 }

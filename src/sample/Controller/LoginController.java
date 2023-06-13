@@ -10,10 +10,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sample.DAO.DBAppointment;
 import sample.DAO.DBUser;
+import sample.DAO.JDBC;
 import sample.Model.Appointment;
-import sample.Model.User;
 import sample.Utilities.TimeUtility;
-
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,6 +26,11 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * The loginController class.
+ * Provides control logic to the login menu by verifying username and password,
+ * adjusting language based on user location, and showing the time zone the user currently resides in.
+ */
 public class LoginController implements Initializable {
     Stage stage;
     Parent scene;
@@ -60,11 +64,28 @@ public class LoginController implements Initializable {
 
     @FXML
     private Label zoneIdLabel;
+
+    /**
+     * On action method for the cancel button. Exits the application.
+     * @param event
+     */
     @FXML
     void onActionCancel(ActionEvent event) {
+        JDBC.closeConnection();
         System.exit(0);
     }
 
+    /**
+     * On action method for the login button.
+     * Takes the user input for the username and password and calls a user database access method to verify the login
+     * credentials. If valid, calls an appointment database access method to see if there are any upcoming appointments
+     * and prompts the user if so. Additionally, creates a filewriter to write to a seperate .txt file to log every
+     * login attempt, and whether it was successful or not with the date/time. Sends user to the main menu if login successful.
+     *
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionLogin(ActionEvent event) throws IOException, SQLException {
 
@@ -126,11 +147,16 @@ public class LoginController implements Initializable {
     }
 
 
+    /**
+     * Initializes the controller.
+     * Sets all the text in the window to English or French depending on the users location using a language resource bundle.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         zoneIdLabel.setText(ZoneId.systemDefault().toString());
-      //  resourceBundle = ResourceBundle.getBundle("sample.Language", new Locale("fr"));
         resourceBundle = ResourceBundle.getBundle("sample.Language", Locale.getDefault());
         title.setText(resourceBundle.getString("title"));
         username.setText(resourceBundle.getString("username"));

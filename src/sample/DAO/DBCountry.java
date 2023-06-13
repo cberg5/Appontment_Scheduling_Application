@@ -9,8 +9,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The DBCountry class. Used to retrieve country data from the database.
+ */
 public class DBCountry {
 
+    /**
+     * A method to return a list of all countries in the database.
+     * Runs a SQL query to find all the countries and a while loop to populate a list of all the countries.
+     * @return list of all countries.
+     * @throws SQLException
+     */
     public static ObservableList<Country> getAllCountries() throws SQLException {
 
         ObservableList<Country> allCountries = FXCollections.observableArrayList();

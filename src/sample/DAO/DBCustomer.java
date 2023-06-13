@@ -2,16 +2,24 @@ package sample.DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sample.Model.Contact;
 import sample.Model.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
+/**
+ * The DBCustomer Class.
+ * Used to retrieve customer data from the database as well as add, update and delete data from the database.
+ */
 public class DBCustomer {
 
+    /**
+     * A method to retrieve a list of all customers in the database.
+     * Runs a SQL query to get all customer data from the database then runs a while loop to populate a list of all customers.
+     * @return a list of all customers
+     * @throws SQLException
+     */
     public static ObservableList<Customer> getAllCustomers() throws SQLException {
 
         ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
@@ -33,6 +41,13 @@ public class DBCustomer {
         return allCustomers;
     }
 
+    /**
+     * A method to add a new customer to the database.
+     * Runs a SQL insert statement to add new customer information into the database.
+     * @param customer
+     * @return rows affected.
+     * @throws SQLException
+     */
     public static int addCustomer(Customer customer) throws SQLException {
 
         String sql = "INSERT INTO customers (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID)" +
@@ -51,6 +66,13 @@ public class DBCustomer {
         return rowsAffected;
     }
 
+    /**
+     * A method to update an existing customer in the database.
+     * Runs an update sql statement to update an existing customer based on the customer ID.
+     * @param customer
+     * @return rows affected
+     * @throws SQLException
+     */
     public static int updateCustomer(Customer customer) throws SQLException {
 
         String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? " +
@@ -68,6 +90,13 @@ public class DBCustomer {
         return rowsAffected;
     }
 
+    /**
+     * A method to delete a customer from the database.
+     * Runs a delete SQL statement to delete a customer based on the customer ID.
+     * @param customer
+     * @return
+     * @throws SQLException
+     */
     public static int deleteCustomer(Customer customer) throws SQLException {
 
         String sql = "DELETE FROM customers WHERE Customer_ID = " + customer.getId();

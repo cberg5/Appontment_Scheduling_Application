@@ -11,11 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.DAO.DBAppointment;
 import sample.DAO.DBCustomer;
-import sample.Model.Appointment;
-import sample.Model.Country;
 import sample.Model.Customer;
-import sample.Model.FLDivision;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +19,11 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * The CustomerRecordsController Class.
+ * Provides control logic to the customer records menu to view all current
+ * customers and select customers to update or delete as well as add new customers
+ */
 public class CustomerRecordsController implements Initializable {
 
     Stage stage;
@@ -53,9 +54,19 @@ public class CustomerRecordsController implements Initializable {
     @FXML
     private TableColumn<Customer, String> postalCodeCol;
 
+    /**
+     * A static method to return the selected customer from the customer table.
+     * @return
+     */
     public static Customer getSelectedCustomer(){
         return selectedCustomer;
     }
+
+    /**
+     * On action method for the add button. Sends the user to the add customer menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionAddBtn(ActionEvent event) throws IOException {
 
@@ -65,6 +76,13 @@ public class CustomerRecordsController implements Initializable {
         stage.show();
     }
 
+    /**
+     * On action method for the delete button.
+     * Verifies if a customer is selected then deletes the selected customer and all appointments associated
+     * with that customer. Asks for confirmation before deletion and messages again when complete.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionDeleteBtn(ActionEvent event) throws SQLException {
 
@@ -94,6 +112,11 @@ public class CustomerRecordsController implements Initializable {
 
     }
 
+    /**
+     * On action method for return button. Sends user back to the main menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionReturnBtn(ActionEvent event) throws IOException {
 
@@ -104,6 +127,12 @@ public class CustomerRecordsController implements Initializable {
 
     }
 
+    /**
+     * On action method for the update button.
+     * Verifies that a customer is selected and then sends the user to the update customer menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionUpdateBtn(ActionEvent event) throws IOException {
 
@@ -121,8 +150,11 @@ public class CustomerRecordsController implements Initializable {
         }
     }
 
-
-
+    /**
+     * Initializes the controller. Populates the table with all current customers.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

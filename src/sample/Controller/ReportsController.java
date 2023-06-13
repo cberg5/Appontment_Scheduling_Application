@@ -1,7 +1,5 @@
 package sample.Controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.DAO.DBAppointment;
 import sample.DAO.DBContact;
 import sample.DAO.DBCountry;
 import sample.DAO.DBReports;
@@ -26,6 +23,10 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+/**
+ * The ReportsController class.
+ * Provides control logic to the reports menu by taking data selected by the user from combo boxes to generate reports in label fields and a table.
+ */
 public class ReportsController implements Initializable {
 
     Stage stage;
@@ -78,6 +79,12 @@ public class ReportsController implements Initializable {
     @FXML
     private ComboBox<String> typeComboBox;
 
+    /**
+     * On action method for the contact combo box.
+     * Retrieves contact Id from selected contact and populates the table based on which contact was selected.
+     * Calls a report database access method to retrieve all appointments of a selected contact to populate the table.
+     * @param event
+     */
     @FXML
     void onActionContactComboBox(ActionEvent event) {
         int contactId = contactComboBox.getSelectionModel().getSelectedItem().getId();
@@ -97,6 +104,14 @@ public class ReportsController implements Initializable {
 
     }
 
+    /**
+     * On action method for the country combo box.
+     * Retrieves the country ID from the selected country and calls a reports database access method to retrieve all
+     * appointments based on the country ID and returns the number of appointments. The number of appointments by the
+     * country is displayed in the text area.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionCountryComboBox(ActionEvent event) throws SQLException {
         int countryId = countryComboBox.getSelectionModel().getSelectedItem().getId();
@@ -104,6 +119,14 @@ public class ReportsController implements Initializable {
         countryTxt.setText(": " + String.valueOf(numAppointments));
     }
 
+    /**
+     * On action method for the month combo box.
+     * Retrieves the month number from the selected month. Checks if the type combo box has been selected yet and if
+     * so calls a reports database access method to return the number of appointments based on the selected month and
+     * appointment type. Sets the text area to the number of appointments.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionMonthComboBox(ActionEvent event) throws SQLException {
         monthNum = monthComboBox.getSelectionModel().getSelectedItem().getMonthNum();
@@ -114,6 +137,14 @@ public class ReportsController implements Initializable {
 
     }
 
+    /**
+     * On action method for the type combo box.
+     * Retrieves the appointment type from the selected type. Checks if the month combo box has been selected yet and if
+     * so calls a reports database access method to return the number of appointments based on the selected month and
+     * appointment type. Sets the text area to the number of appointments.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionTypeComboBox(ActionEvent event) throws SQLException {
         appointmentType = typeComboBox.getSelectionModel().getSelectedItem();
@@ -124,6 +155,11 @@ public class ReportsController implements Initializable {
 
     }
 
+    /**
+     * On action method for the return button. Returns user to the main menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionReturnBtn(ActionEvent event) throws IOException {
 
@@ -132,6 +168,12 @@ public class ReportsController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
+
+    /**
+     * Initializes the controller. Populates the combo boxes.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

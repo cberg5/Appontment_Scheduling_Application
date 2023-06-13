@@ -22,10 +22,19 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * The MainMenuController class.
+ * Provides control logic to the main menu to allow user to navigate to the other menus of the application.
+ */
 public class MainMenuController implements Initializable {
     Stage stage;
     Parent scene;
 
+    /**
+     * On action method for the appointment button. Sends the user to the appointments menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionAppointmentsBtn(ActionEvent event) throws IOException {
 
@@ -36,6 +45,11 @@ public class MainMenuController implements Initializable {
 
     }
 
+    /**
+     * On action method for the customer records button. Sends the user to the customer records menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCustomerRecordsBtn(ActionEvent event) throws IOException {
 
@@ -46,6 +60,10 @@ public class MainMenuController implements Initializable {
 
     }
 
+    /**
+     * On action method for the exit button. Exits the application.
+     * @param event
+     */
     @FXML
     void onActionExitBtn(ActionEvent event) {
 
@@ -53,6 +71,11 @@ public class MainMenuController implements Initializable {
         System.exit(0);
     }
 
+    /**
+     * On action method for the reports button. Sends the user to the reports menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionReportsBtn(ActionEvent event) throws IOException {
 
@@ -64,6 +87,11 @@ public class MainMenuController implements Initializable {
     }
 
 
+    /**
+     * Initializes the controller.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
