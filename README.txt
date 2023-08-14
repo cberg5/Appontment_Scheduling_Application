@@ -25,7 +25,7 @@ Directions:
 -In the Reports screen, three different reports can be generated.
     -Select a month and appointment type to generate a report for the number of appointments in that month and type.
     -Select a contact to view that specific contacts schedule in a table populated with that contacts schedule.
-    REPORT OF MY CHOICE: -Select a country to view the number of appointments in that country.
+    -Select a country to view the number of appointments in that country.
 
 
 
