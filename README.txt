@@ -4,7 +4,7 @@ Purpose: The purpose of this application to provide a GUI application to allow u
 
 Author: Cody Bergin
 Contact: email: cberg79@wgu.edu
-         Student ID: 010822887
+       
 
 Application Version 1.0, Date: 06/13/2023
 
